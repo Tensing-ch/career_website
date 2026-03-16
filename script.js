@@ -108,8 +108,8 @@ const jobs = [
     ],
     resources: [
       { type: 'Course',   name: 'DevOps',                 desc: 'Hands-on DevOps learning path',            free: false, icon: '👨🏻‍💻', color: 'rgba(255,200,0,0.15)', url: 'https://www.youtube.com/watch?v=ZbG0c87wcM8&list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak' },
-      { type: 'Course',   name: 'AWS Certified DevOps',   desc: 'Industry-standard cloud certification',    free: false, icon: '☁️', color: 'rgba(0,212,255,0.15)'   },
-      { type: 'Course',   name: 'Kubernetes Docs',        desc: 'Official K8s documentation',               free: true,  icon: '⛵', color: 'rgba(0,245,160,0.15)'   },
+      { type: 'Course',   name: 'LINUX' ,   desc: 'Industry-standard cloud certification',    free: false, icon: '☁️', color: 'rgba(0,212,255,0.15)'   },
+      { type: 'Course',   name: 'Kubernetes,Ansible ',        desc: 'Official K8s documentation',               free: true,  icon: '⛵', color: 'rgba(0,245,160,0.15)'   },
     ],
   },
   {

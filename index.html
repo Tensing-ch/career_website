@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPath — IT Career Guidance</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+/* ================================================
+   TechPath — IT Career Guidance
+   style.css
+   ================================================ */
+
+/* ---- CSS Variables ---- */
+:root {
+  --bg:       #060910;
+  --surface:  #0d1117;
+  --surface2: #161b22;
+  --border:   rgba(255, 255, 255, 0.07);
+  --accent:   #00f5a0;
+  --accent2:  #00d4ff;
+  --accent3:  #ff6b6b;
+  --text:     #e6edf3;
+  --muted:    #7d8590;
+  --accent-salary: #38bdf8; /* Refined professional sky blue for salary */
+}
+
+/* Light theme overrides */
+:root.light {
+  --bg:       #f6f8fa;
+  --surface:  #ffffff;
+  --surface2: #f3f4f6;
+  --border:   rgba(17,24,39,0.06);
+  --accent:   #0ea5a4;
+  --accent2:  #0284c7;
+  --accent3:  #ef4444;
+  --text:     #0f172a;
+  --muted:    #475569;
+  --accent-salary: #0284c7; /* Refined professional blue for salary */
+}
+
+/* Smooth theme transitions */
+* { transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease; }
+
+.nav-actions { display:flex; gap:0.5rem; align-items:center; }
+.theme-toggle { background:transparent; border:none; font-size:1.05rem; cursor:pointer; }
+
+/* ---- Reset ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar              { width: 6px; }
+::-webkit-scrollbar-track        { background: var(--bg); }
+::-webkit-scrollbar-thumb        { background: var(--accent); border-radius: 3px; }
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6, 9, 16, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ================================================
+   HERO
+   ================================================ */
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 5% 40px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,245,160,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,212,255,0.06) 0%, transparent 50%);
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,245,160,0.1);
+  border: 1px solid rgba(0,245,160,0.3);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* Use a more neutral, slightly larger headline font */
+h1 {
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+h1 span { color: var(--accent); }
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,245,160,0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Stats ---- */
+.stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.stat-item { text-align: center; }
+
+.stat-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ================================================
+   SHARED SECTION STYLES
+   ================================================ */
+section {
+  padding: 80px 5%;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+/* ================================================
+   JOB CARDS (shared between top-jobs & all-jobs)
+   ================================================ */
+.top-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.all-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.job-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.job-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,245,160,0.04), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.job-card:hover {
+  border-color: rgba(0,245,160,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,245,160,0.08);
+}
+
+.job-card:hover::before { opacity: 1; }
+
+/* ---- Quick view button on job cards ---- */
+.job-card { position: relative; }
+.quick-view {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.45);
+  color: var(--text);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+/* ---- Modal styles ---- */
+.career-modal { display: none; position: fixed; inset: 0; z-index: 9999; }
+.career-modal.show { display: block; }
+.career-modal .modal-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+}
+.career-modal .modal-content {
+  position: absolute;
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); padding: 28px; width: min(900px, 94%);
+  border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.career-modal .close-btn {
+  position: absolute; right: 12px; top: 12px; border: none; background: transparent;
+  color: var(--muted); font-size: 1.1rem; cursor: pointer;
+}
+.career-modal h1 { font-family: 'Syne', sans-serif; margin-bottom: 8px; }
+.career-modal p { color: var(--muted); margin-bottom: 16px; }
+.skills-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.skills-row .skill { padding:6px 10px; border-radius:999px; font-size:0.85rem; font-weight:600; }
+.skills-row .skill.blue   { background: rgba(0,212,255,0.12); color: var(--accent2); }
+.skills-row .skill.green  { background: rgba(0,245,160,0.12); color: var(--accent); }
+.skills-row .skill.yellow { background: rgba(255,200,0,0.12); color: var(--accent3); }
+
+
+.job-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.job-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.job-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.job-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-salary {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-salary);
+}
+
+.job-tag {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(0,245,160,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0,245,160,0.2);
+}
+
+.explore-btn {
+  display: block;
+  margin: 3rem auto 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.explore-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ================================================
+   TOP JOBS SECTION
+   ================================================ */
+#top-jobs {
+  background: var(--surface);
+}
+
+.jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ================================================
+   ALL JOBS SECTION
+   ================================================ */
+#all-jobs {
+  display: none;
+}
+
+#all-jobs.visible {
+  display: block;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: rgba(0,245,160,0.1);
+  border-color: rgba(0,245,160,0.4);
+  color: var(--accent);
+}
+
+/* ================================================
+   ROLE DETAIL SECTION
+   ================================================ */
+#role-detail {
+  display: none;
+  background: var(--surface);
+}
+
+#role-detail.visible {
+  display: block;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: var(--accent);
+}
+
+.role-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+
+.role-title {
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.salary-big {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-salary);
+}
+
+/* Light theme specific tweaks */
+:root.light .salary-big {
+  background: none;
+  color: var(--accent-salary);
+}
+
+.salary-range {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.demand-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.demand-high {
+  background: rgba(0,245,160,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0,245,160,0.3);
+}
+
+/* ---- Tabs ---- */
+.role-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 14px 24px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content          { display: none; }
+.tab-content.active   { display: block; }
+
+/* ================================================
+   SKILLS TAB
+   ================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.skill-chip:hover {
+  border-color: rgba(0,245,160,0.4);
+}
+
+.skill-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.skill-level {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.skill-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+/* ================================================
+   ROADMAP TAB
+   ================================================ */
+.roadmap {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+}
+
+.roadmap-step {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.roadmap-step::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 12px rgba(0,245,160,0.5);
+}
+
+.step-phase {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.step-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.step-duration {
+  font-size: 0.78rem;
+  color: var(--accent2);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* ================================================
+   SALARY TAB
+   ================================================ */
+.salary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.salary-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+.salary-card .label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 6px;
+}
+
+.salary-card .amount {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-salary);
+}
+
+.salary-card .note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.prog-bar-wrap {
+  margin-bottom: 1.2rem;
+}
+
+.prog-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+
+.prog-label span:last-child {
+  color: var(--accent-salary);
+  font-weight: 600;
+}
+
+.prog-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-salary), var(--accent2));
+  border-radius: 3px;
+}
+
+/* ================================================
+   RESOURCES TAB
+   ================================================ */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+.resource-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.resource-card:hover {
+  border-color: rgba(0,245,160,0.3);
+  transform: translateX(4px);
+}
+
+.res-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.res-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+
+.res-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.res-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.res-free {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(0,245,160,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0,245,160,0.2);
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* ================================================
+   RESUME BUILDER SECTION
+   ================================================ */
+#resume {
+  background: var(--surface);
+}
+
+.resume-builder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.resume-form {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.resume-preview {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  color: #1a1a1a;
+  font-family: 'DM Sans', sans-serif;
+  position: sticky;
+  top: 90px;
+  min-height: 700px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  border: 1px solid var(--border);
+}
+
+/* ---- Form Elements ---- */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--accent);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-select {
+  appearance: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 1.5rem 0 1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.add-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(0,245,160,0.05);
+  border: 1px dashed rgba(0,245,160,0.3);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.add-btn:hover {
+  background: rgba(0,245,160,0.1);
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 1.5rem;
+  transition: all 0.2s;
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,245,160,0.3);
+}
+
+/* ---- Resume Preview Styles ---- */
+.rv-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.rv-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-salary);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.rv-contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.78rem;
+  color: #475569;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rv-contact a {
+  color: #475569;
+  text-decoration: none;
+}
+
+.rv-section {
+  margin-bottom: 22px;
+}
+
+.rv-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #0f172a;
+}
+
+.rv-summary {
+  font-size: 0.82rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.rv-skill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rv-skill {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+}
+
+.rv-exp-item {
+  margin-bottom: 16px;
+}
+
+.rv-exp-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.rv-exp-duration {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.rv-exp-company {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #475569;
+  margin-top: 1px;
+  margin-bottom: 6px;
+}
+
+.rv-exp-desc {
+  font-size: 0.8rem;
+  color: #334155;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.rv-edu-degree {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.rv-edu-year {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.rv-edu-school {
+  font-size: 0.8rem;
+  color: #475569;
+  margin-top: 1px;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 5%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+footer .logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.footer-copy {
+  margin-top: 8px;
+  font-size: 0.75rem;
+}
+
+/* ================================================
+   ANIMATIONS
+   ================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ================================================
+   RESPONSIVE — MOBILE
+   ================================================ */
+@media (max-width: 900px) {
+  .resume-builder { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .role-hero { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .nav-links              { display: none; }
+  .jobs-header            { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .form-row               { grid-template-columns: 1fr; }
+  .stats                  { gap: 1.5rem; }
+}
+
+/* ================================================
+   QUICK VIEW BUTTON (on job cards)
+   ================================================ */
+.quick-view {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 245, 160, 0.1);
+  border: 1px solid rgba(0, 245, 160, 0.35);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.job-card:hover .quick-view {
+  opacity: 1;
+}
+
+.quick-view:hover {
+  background: rgba(0, 245, 160, 0.2);
+}
+
+/* ================================================
+   CAREER MODAL
+   ================================================ */
+.career-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.career-modal.show {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  position: relative;
+  z-index: 201;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  max-width: 560px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-content h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.modal-content p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.modal-content h3 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.skill {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+
+.skill.blue {
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--accent2);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.skill.green {
+  background: rgba(0, 245, 160, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0, 245, 160, 0.3);
+}
+
+.skill.yellow {
+  background: rgba(255, 200, 0, 0.1);
+  color: #ffc800;
+  border: 1px solid rgba(255, 200, 0, 0.3);
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.btn-linkedin{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:#1a0be4;
+  color:rgb(228, 228, 235);
+  padding:10px 16px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn-linkedin:hover{
+  background:#005582;
+}
+
+/* Custom styling for the live estimator range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid var(--border);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-salary);
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  background: var(--accent2);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-salary);
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.25);
+  background: var(--accent2);
+}
+
+/* Styling for the hero launch rocket behind the text */
+.hero-rocket-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(22rem, 55vw, 38rem);
+  height: clamp(22rem, 55vw, 38rem);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: launchRocket4K 2.5s cubic-bezier(0.15, 0.88, 0.3, 1) forwards;
+}
+
+.hero-rocket-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  animation: hoverRocket4K 4s ease-in-out 2.5s infinite alternate;
+}
+
+.rocket-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 30px rgba(56, 189, 248, 0.25));
+}
+
+@keyframes launchRocket4K {
+  0% {
+    transform: translate(-150%, 150%) scale(0.1) rotate(20deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.0) rotate(45deg);
+    opacity: 0.35; /* watermark/resting opacity */
+  }
+}
+
+@keyframes hoverRocket4K {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) translateX(4px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(8px) translateX(-4px) rotate(-1deg);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="nav-logo">Choose Your Career</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#top-jobs">Jobs</a></li>
+      <li><a href="#resume">Resume</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button class="nav-cta" onclick="scrollToSection('resume')">Build Resume</button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-rocket-wrapper">
+      <div class="hero-rocket-inner">
+        <svg class="rocket-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Flame/Thrust (highly transparent) -->
+          <path d="M16 48C12 50 8 56 8 56C8 56 14 52 16 48Z" fill="#ff6b6b" opacity="0.15" />
+          <path d="M13 51C10 52 6 58 6 58C6 58 12 54 13 51Z" fill="#ffb03a" opacity="0.15" />
+          <!-- Left Fin -->
+          <path d="M22 42L12 48L16 34L22 42Z" fill="var(--accent-salary)" opacity="0.1" stroke="var(--accent-salary)" stroke-width="1.5" stroke-opacity="0.4" />
+          <!-- Right Fin -->
+          <path d="M42 22L48 12L34 16L42 22Z" fill="var(--accent-salary)" opacity="0.1" stroke="var(--accent-salary)" stroke-width="1.5" stroke-opacity="0.4" />
+          <!-- Main Rocket Body (holographic/transparent outline) -->
+          <path d="M48 16C42 10 32 14 26 20C20 26 14 36 20 42C26 48 36 44 42 38C48 32 54 22 48 16Z" fill="url(#rocketGrad)" stroke="url(#rocketStrokeGrad)" stroke-width="1.5" />
+          <!-- Rocket Window -->
+          <circle cx="34" cy="30" r="4" fill="var(--bg)" opacity="0.2" />
+          <circle cx="34" cy="30" r="3" fill="#00d4ff" opacity="0.3" stroke="#00d4ff" stroke-width="1" />
+          <!-- Definitions for gradient -->
+          <defs>
+            <linearGradient id="rocketGrad" x1="20" y1="42" x2="48" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#161b22" stop-opacity="0.05" />
+              <stop offset="70%" stop-color="var(--accent-salary)" stop-opacity="0.1" />
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.15" />
+            </linearGradient>
+            <linearGradient id="rocketStrokeGrad" x1="20" y1="42" x2="48" y2="16" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="var(--accent-salary)" stop-opacity="0.2" />
+              <stop offset="70%" stop-color="var(--accent-salary)" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.6" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-content fade-in">
+      <div class="hero-badge">🚀 Your IT Career Starts Here</div>
+      <h1>Navigate Your<br /><span>Tech Career</span><br />With Confidence</h1>
+      <p class="hero-sub">
+        Explore IT roles, discover required skills, follow roadmaps,
+        and land your dream job — all in one place.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToSection('top-jobs')">Explore IT Jobs</button>
+        <a class="btn-linkedin" href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.985V9h3.102v1.561h.046c.432-.817 1.487-1.678 3.061-1.678 3.273 0 3.876 2.154 3.876 4.955v6.614zM5.337 7.433a1.8 1.8 0 1 1 0-3.601 1.8 1.8 0 0 1 0 3.601zm1.554 13.019H3.783V9h3.108v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn Jobs
+        </a>
+        <button class="btn-secondary" onclick="scrollToSection('resume')">Build Your Resume</button>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">IT Roles</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Resources</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">₹5-15L+</div>
+          <div class="stat-label">Avg Salary</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Learners</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOP JOBS ===== -->
+  <section id="top-jobs">
+    <div class="jobs-header">
+      <div>
+        <div class="section-label">Trending Roles</div>
+        <h2 class="section-title">Top IT Jobs in Future</h2>
+        <p class="section-sub">Most in-demand roles with highest growth potential</p>
+      </div>
+    </div>
+    <div class="top-jobs-grid" id="topJobsGrid"></div>
+    <button class="explore-btn" onclick="showAllJobs()">Explore All Jobs →</button>
+  </section>
+
+  <!-- ===== ALL JOBS ===== -->
+  <section id="all-jobs">
+    <div class="section-label">Full Directory</div>
+    <h2 class="section-title">All IT Job Roles</h2>
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="all-jobs-grid" id="allJobsGrid"></div>
+    <button class="explore-btn" onclick="hideAllJobs()">← Show Less</button>
+  </section>
+
+  <!-- ===== ROLE DETAIL ===== -->
+  <section id="role-detail">
+    <button class="back-btn" onclick="closeRole()">← Back to Jobs</button>
+    <div id="roleContent"></div>
+  </section>
+
+  <!-- ===== RESUME BUILDER ===== -->
+  <section id="resume">
+    <div class="section-label">Career Tools</div>
+    <h2 class="section-title">Resume Builder</h2>
+    <p class="section-sub">Create a professional, ATS-friendly resume in minutes</p>
+
+    <div class="resume-builder">
+
+      <!-- FORM PANEL -->
+      <div class="resume-form">
+
+        <div class="form-section-title">Personal Info</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" id="r-name" placeholder="TENSING NARKE CH" oninput="updatePreview()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Job Title</label>
+            <input class="form-input" id="r-role" placeholder="DEVOPS ENGINEER " oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="r-email" placeholder="tensing@email.com" oninput="updatePreview()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input class="form-input" id="r-phone" placeholder="+91 123456789" oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input class="form-input" id="r-location" placeholder="India" oninput="updatePreview()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">LinkedIn / Portfolio</label>
+            <input class="form-input" id="r-linkedin" placeholder="linkedin.com/in/tensing" oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Professional Summary</label>
+          <textarea
+            class="form-textarea"
+            id="r-summary"
+            placeholder="A brief summary about your experience and goals..."
+            oninput="updatePreview()"
+          ></textarea>
+        </div>
+
+        <div class="form-section-title">Skills</div>
+        <div class="form-group">
+          <label class="form-label">Technical Skills (comma separated)</label>
+          <input class="form-input" id="r-skills" placeholder="JavaScript, React, Node.js, Python, SQL" oninput="updatePreview()" />
+        </div>
+
+        <div class="form-section-title">Experience</div>
+        <div id="expList">
+          <div class="exp-entry">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Job Title</label>
+                <input class="form-input exp-title" placeholder="Frontend Developer" oninput="updatePreview()" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Company</label>
+                <input class="form-input exp-company" placeholder="TCS" oninput="updatePreview()" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Duration</label>
+                <input class="form-input exp-duration" placeholder="Jan 2023 – Present" oninput="updatePreview()" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea exp-desc" placeholder="• Built responsive UIs using React..." oninput="updatePreview()"></textarea>
+            </div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addExperience()">+ Add Experience</button>
+
+        <div class="form-section-title">Education</div>
+        <div id="eduList">
+          <div class="edu-entry">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Degree</label>
+                <input class="form-input edu-degree" placeholder="B.Tech Computer Science" oninput="updatePreview()" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Institution</label>
+                <input class="form-input edu-school" placeholder="VIT University" oninput="updatePreview()" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year</label>
+              <input class="form-input edu-year" placeholder="2019 – 2023" oninput="updatePreview()" />
+            </div>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addEducation()">+ Add Education</button>
+
+        <button class="generate-btn" onclick="downloadResume()">⬇ Download Resume</button>
+      </div>
+
+      <!-- LIVE PREVIEW PANEL -->
+      <div>
+        <div class="resume-preview" id="resumePreview">
+          <div class="rv-name" id="pv-name">Your Name</div>
+          <div class="rv-role" id="pv-role">Job Title</div>
+          <div class="rv-contact" id="pv-contact">
+            tensing@email.com · +91 00000 00000 · City · linkedin.com/in/tensing
+          </div>
+          <div class="rv-section">
+            <div class="rv-section-title">Summary</div>
+            <div class="rv-summary" id="pv-summary">Your professional summary will appear here...</div>
+          </div>
+          <div class="rv-section">
+            <div class="rv-section-title">Skills</div>
+            <div class="rv-skill-wrap" id="pv-skills">
+              <span class="rv-skill">JavaScript</span>
+              <span class="rv-skill">React</span>
+              <span class="rv-skill">Node.js</span>
+            </div>
+          </div>
+          <div class="rv-section">
+            <div class="rv-section-title">Experience</div>
+            <div id="pv-exp">
+              <div class="rv-exp-item">
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span class="rv-exp-title">Your Job Title</span>
+                  <span class="rv-exp-duration">Duration</span>
+                </div>
+                <div class="rv-exp-company">Company</div>
+                <div class="rv-exp-desc">Your description will appear here.</div>
+              </div>
+            </div>
+          </div>
+          <div class="rv-section">
+            <div class="rv-section-title">Education</div>
+            <div id="pv-edu">
+              <div class="rv-exp-item">
+                <div style="display:flex; justify-content:space-between; align-items:baseline;">
+                  <span class="rv-edu-degree">Your Degree</span>
+                  <span class="rv-edu-year">Year</span>
+                </div>
+                <div class="rv-edu-school">Institution</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="logo">TechPath</div>
+    <p>Empowering the next generation of IT professionals in India and beyond.</p>
+    <p class="footer-copy">© 2025 TechPath. All rights reserved.</p>
+  </footer>
+
+  <!-- CAREER QUICK VIEW MODAL -->
+  <div id="careerModal" class="career-modal" aria-hidden="true">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()" aria-label="Close">✕</button>
+      <h1 id="modalTitle"></h1>
+      <p id="modalDesc"></p>
+
+      <h3>MUST HAVE</h3>
+      <div id="must" class="skills-row"></div>
+
+      <h3>GOOD TO HAVE</h3>
+      <div id="good" class="skills-row"></div>
+
+      <h3>BONUS</h3>
+      <div id="bonus" class="skills-row"></div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
